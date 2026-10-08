@@ -1,0 +1,22 @@
+{
+  "entity": {
+    "binary_sensor": {
+      "low_gas": {
+        "default": "mdi:propane-tank-outline",
+        "state": {
+          "on": "mdi:propane-tank-outline",
+          "off": "mdi:propane-tank"
+        }
+      }
+    },
+    "sensor": {
+      "level": { "default": "mdi:gauge" },
+      "remaining_gas": { "default": "mdi:propane-tank" },
+      "average_consumption": { "default": "mdi:chart-line" },
+      "run_out_date": { "default": "mdi:calendar-alert" },
+      "tank_size": { "default": "mdi:propane-tank-outline" },
+      "last_reading": { "default": "mdi:clock-outline" },
+      "battery_voltage": { "default": "mdi:battery" }
+    }
+  }
+}

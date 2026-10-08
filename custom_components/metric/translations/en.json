@@ -1,0 +1,57 @@
+{
+  "config": {
+    "step": {
+      "reauth_confirm": {
+        "title": "Authentication expired",
+        "description": "Your Metric session has expired. Sign in again to keep your tanks updating."
+      }
+    },
+    "abort": {
+      "already_configured": "This Metric account is already configured.",
+      "reauth_successful": "Re-authentication was successful.",
+      "wrong_account": "You signed in with a different Metric account. Sign in with the account that was originally set up.",
+      "invalid_token": "Metric returned an access token that could not be read."
+    },
+    "create_entry": {
+      "default": "Successfully signed in to Metric."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "low_gas": {
+        "name": "Low gas"
+      }
+    },
+    "sensor": {
+      "level": {
+        "name": "Gas level"
+      },
+      "remaining_gas": {
+        "name": "Remaining gas"
+      },
+      "average_consumption": {
+        "name": "Average daily consumption"
+      },
+      "run_out_date": {
+        "name": "Estimated run-out"
+      },
+      "tank_size": {
+        "name": "Tank size"
+      },
+      "last_reading": {
+        "name": "Last reading"
+      },
+      "battery_voltage": {
+        "name": "Battery voltage"
+      }
+    }
+  },
+  "exceptions": {
+    "auth_failed": {
+      "message": "Metric rejected the access token. Sign in again."
+    },
+    "update_failed": {
+      "message": "Error communicating with Metric: {error}"
+    }
+  }
+}
