@@ -38,8 +38,8 @@ class MetricOAuth2Implementation(config_entry_oauth2_flow.LocalOAuth2Implementat
 
         This is the redirect URI registered for the Metric client. Home
         Assistant would otherwise use `<instance>/auth/external/callback` when
-        the `my` integration isn't loaded. The callback view is registered by the OAuth helper itself, so
-        this works whether or not `my` is loaded.
+        the `my` integration isn't loaded. The callback view is registered by
+        the OAuth helper itself, so this works whether or not `my` is loaded.
         """
         return config_entry_oauth2_flow.MY_AUTH_CALLBACK_PATH
 
