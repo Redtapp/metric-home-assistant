@@ -41,7 +41,7 @@ def device_payload(device_id: str = DEVICE_ID, **overrides: Any) -> dict[str, An
     return {
         "id": device_id,
         "name": "Casa",
-        "percentage": 42.5,
+        "percentage": 0.425,
         "tankSize": 300,
         "hardwareVersion": "c3-v2",
         "softwareVersion": "2.1.0",
@@ -53,14 +53,14 @@ def device_payload(device_id: str = DEVICE_ID, **overrides: Any) -> dict[str, An
             "averageConsumePerDay": 3.25,
             "dateRunOutGas": "2026-11-15T00:00:00.000Z",
         },
-        "alerts": {"low": 20},
+        "alerts": {"low": 0.2},
     } | overrides
 
 
 def telemetry_payload(**overrides: Any) -> dict[str, Any]:
     """Return a sample as served by `/telemetry/latest`."""
     return {
-        "percentage": 42.5,
+        "percentage": 0.425,
         "battery": 3712,
         "temp": 24.5,
         "source": "v2",
