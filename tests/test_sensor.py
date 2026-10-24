@@ -69,7 +69,12 @@ async def test_device_info(
 
 @pytest.mark.parametrize(
     ("percentage", "low", "expected"),
-    [(15, 20, STATE_ON), (20, 20, STATE_ON), (21, 20, STATE_OFF), (15, None, STATE_UNKNOWN)],
+    [
+        (0.15, 0.2, STATE_ON),
+        (0.2, 0.2, STATE_ON),
+        (0.21, 0.2, STATE_OFF),
+        (0.15, None, STATE_UNKNOWN),
+    ],
 )
 async def test_low_gas(
     hass: HomeAssistant,

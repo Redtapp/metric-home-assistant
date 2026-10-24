@@ -217,7 +217,7 @@ async def test_new_and_removed_devices(
     aioclient_mock.clear_requests()
     aioclient_mock.get(
         f"{API_URL}/devices",
-        json={"devices": [device_payload("112233445566", name="Cabaña", percentage=80)]},
+        json={"devices": [device_payload("112233445566", name="Cabaña", percentage=0.8)]},
     )
     aioclient_mock.get(f"{API_URL}/devices/112233445566/telemetry/latest", json=telemetry_payload())
     freezer.tick(UPDATE_INTERVAL)

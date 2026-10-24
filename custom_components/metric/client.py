@@ -104,6 +104,11 @@ def _parse_float(value: Any) -> float | None:
     return float(value)
 
 
+def _to_percentage(ratio: float) -> float:
+    # The API reports gas levels and the low-gas alert as ratios from 0 to 1.
+    return round(ratio * 100, 2)
+
+
 def _battery_voltage(value: Any) -> float | None:
     battery = _parse_float(value)
     if battery is None:
@@ -116,7 +121,7 @@ def _battery_voltage(value: Any) -> float | None:
 def parse_telemetry(data: dict[str, Any]) -> Telemetry:
     """Parse a `/telemetry/latest` response."""
     return Telemetry(
-        percentage=float(data["percentage"]),
+        percentage=_to_percentage(float(data["percentage"])),
         battery_voltage=_battery_voltage(data.get("battery")),
         temperature=_parse_float(data.get("temp")),
         time=datetime.fromisoformat(data["timeCreated"]),
@@ -128,10 +133,11 @@ def parse_device(data: dict[str, Any], telemetry: Telemetry | None) -> Device:
     analytics = data.get("analytics") or {}
     alerts = data.get("alerts") or {}
     rssi = _parse_float(data.get("wifiRssi"))
+    low = _parse_float(alerts.get("low"))
     return Device(
         id=data["id"],
         name=data["name"],
-        percentage=float(data["percentage"]),
+        percentage=_to_percentage(float(data["percentage"])),
         tank_size=float(data["tankSize"]),
         hardware_version=data["hardwareVersion"],
         software_version=data["softwareVersion"],
@@ -140,7 +146,7 @@ def parse_device(data: dict[str, Any], telemetry: Telemetry | None) -> Device:
         time_data_updated=_parse_datetime(data.get("timeDataUpdated")),
         average_consumption_per_day=_parse_float(analytics.get("averageConsumePerDay")),
         date_run_out=_parse_datetime(analytics.get("dateRunOutGas")),
-        low_alert_threshold=_parse_float(alerts.get("low")),
+        low_alert_threshold=_to_percentage(low) if low is not None else None,
         telemetry=telemetry,
     )
 
